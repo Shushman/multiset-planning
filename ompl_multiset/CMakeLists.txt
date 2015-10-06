@@ -24,6 +24,7 @@ include_directories(
 link_libraries(
    ${catkin_LIBRARIES}
    ${OMPL_LIBRARIES}
+   ${Boost_LIBRARIES}
    ${OPENSSL_LIBRARIES})
 
 #add_definitions("-Wall -Werror")
