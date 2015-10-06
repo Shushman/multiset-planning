@@ -3,7 +3,7 @@ project(ompl_multiset)
 
 find_package(catkin REQUIRED COMPONENTS pr_bgl)
 find_package(OMPL REQUIRED)
-find_package(Boost REQUIRED)
+find_package(Boost REQUIRED COMPONENTS filesystem system)
 find_package(OpenSSL REQUIRED)
 
 catkin_package(
@@ -12,6 +12,8 @@ catkin_package(
 )
 
 set(CMAKE_BUILD_TYPE Release)
+
+message(STATUS "Boost lib dir: ${Boost_LIBRARY_DIRS}")
 
 include_directories(
    include
@@ -38,10 +40,10 @@ add_library(${PROJECT_NAME}
    src/util.cpp)
 
 add_executable(generate-unit-roadmap src/generate_unit_roadmap.cpp)
-target_link_libraries(generate-unit-roadmap ${PROJECT_NAME})
+target_link_libraries(generate-unit-roadmap ${PROJECT_NAME} ${Boost_LIBRARIES})
 
 add_executable(test-graph-overlay src/test_graph_overlay.cpp)
-target_link_libraries(test-graph-overlay ${PROJECT_NAME})
+target_link_libraries(test-graph-overlay ${PROJECT_NAME} ${Boost_LIBRARIES})
 
 catkin_add_gtest(roadmapgen test/roadmapgen.cpp)
 target_link_libraries(roadmapgen ${PROJECT_NAME})
