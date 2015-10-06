@@ -3,7 +3,7 @@ project(ompl_multiset)
 
 find_package(catkin REQUIRED COMPONENTS pr_bgl)
 find_package(OMPL REQUIRED)
-find_package(Boost REQUIRED COMPONENTS filesystem system)
+find_package(Boost REQUIRED COMPONENTS filesystem program_options system)
 find_package(OpenSSL REQUIRED)
 
 catkin_package(
@@ -13,7 +13,6 @@ catkin_package(
 
 set(CMAKE_BUILD_TYPE Release)
 
-message(STATUS "Boost lib dir: ${Boost_LIBRARY_DIRS}")
 
 include_directories(
    include
